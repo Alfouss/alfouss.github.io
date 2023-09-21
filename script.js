@@ -68,8 +68,14 @@ function generateMarkersFeatureGroup(response) {
   return L.featureGroup(group);
 }
 
-  let newArrayOrderFromClick = [];
 
+
+//=======================================================//
+
+  let newArrayOrderFromClick = [];
+  let table = document.querySelector("#table");
+  let tbody = table.childNodes[1];
+  let pointers = document.querySelectorAll(".leaflet-marker-icon");
 
   function resetButtonF(){
 
@@ -99,14 +105,101 @@ function generateMarkersFeatureGroup(response) {
     generateAddressScript(newArrayOrderFromClick);
   }    
 
+
+  //============= Function 
+
   function InOrderFromClick(num){
 
-    let elements = document.querySelectorAll(".leaflet-marker-icon");
-    newArrayOrderFromClick[newArrayOrderFromClick.length] = arrAdress[num];
-    elements[num].style.display = "none" ;
+    let pointers = document.querySelectorAll(".leaflet-marker-icon");
+    let sizeNewArrayFromClick = newArrayOrderFromClick.length; 
+    newArrayOrderFromClick[sizeNewArrayFromClick] = arrAdress[num];
+    
+    pointers[num].style.display = "none" ;
+    //pointers[num].src = "https://assets.mapquestapi.com/icon/v2/marker-end.png" ;
     console.log(newArrayOrderFromClick);
+    createRowInTable(sizeNewArrayFromClick, arrAdress[num]);
+  }
+
+
+  //============= Function
+
+  function action_remove(address){
+    
+    let trBlock_arr = document.querySelectorAll(".tr_block");
+    let size_trBlock_arr = trBlock_arr.length;
+
+    for (let s = 0; s < size_trBlock_arr; s++) {
+
+      let tr_target_text = trBlock_arr[s].childNodes[1].textContent ;
+
+      console.log(trBlock_arr[0] == address)
+      if (tr_target_text == address) {
+
+        trBlock_arr[s].style.display = "none";
+      }
+      
+    }
+
+      //tbody.removeChild(address_target[number]);
+      
+
+    /*if( number > newArrayOrderFromClick.length)  {
+      let less = number - newArrayOrderFromClick.length;
+      newArrayOrderFromClick.splice((number - less), 1)
+    }
+    else newArrayOrderFromClick.splice(number+1, 1)*/
+  
+
+    //console.log(trBlock_arr)
+    
+  }
+
+
+  function createRowInTable(numberList, address){
+
+      
+      const tr = document.createElement("tr");
+      const tdNum = document.createElement("td");
+      const tdAddress = document.createElement("td");
+      const tdAction = document.createElement("td");
+
+
+      tr.setAttribute("class", "tr_block");
+      tdAction.setAttribute("class", "action_remove");
+      tdAction.setAttribute("onclick", "action_remove('"+ address +"')");
+      
+
+      const numberListText = document.createTextNode(numberList);
+      const addressText = document.createTextNode(address);
+      const actionText = document.createTextNode("X");
+
+      //Style for he cross
+      tdAction.style.fontSize = "23px";
+      tdAction.style.fontWeight = "bold";
+      tdAction.style.color = "red";
+     
+      tdNum.appendChild(numberListText);
+      tdAddress.appendChild(addressText);
+      tdAction.appendChild(actionText);
+
+      tr.appendChild(tdNum);
+      tr.appendChild(tdAddress);
+      tr.appendChild(tdAction);
+
+      tbody.appendChild(tr);
+      //td.appendChild(address);
+
+
+
+      /*for (let d = 0; d < array.length; d++) {
+        const element = array[index];
+        
+      }*/
 
   }
+
+
+
 
   setTimeout(() => {
 
@@ -123,7 +216,7 @@ function generateMarkersFeatureGroup(response) {
     finishButton.addEventListener("click", buttonFinishF, false);
 
 
-    }, "4000");
+    }, "2700");
 
 let f = 0;
 let l = 0;
@@ -147,6 +240,9 @@ Citadines Didot Montparnasse
 
 
 var lines = listeAddress.split("\n");*/
+
+
+//====================================================================
 
 
 
