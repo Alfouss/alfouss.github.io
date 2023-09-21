@@ -117,7 +117,7 @@ function generateMarkersFeatureGroup(response) {
     pointers[num].style.display = "none" ;
     //pointers[num].src = "https://assets.mapquestapi.com/icon/v2/marker-end.png" ;
     console.log(newArrayOrderFromClick);
-    createRowInTable(sizeNewArrayFromClick, arrAdress[num]);
+    createRowInTable(num, sizeNewArrayFromClick, arrAdress[num]);
   }
 
 
@@ -127,35 +127,28 @@ function generateMarkersFeatureGroup(response) {
     
     let trBlock_arr = document.querySelectorAll(".tr_block");
     let size_trBlock_arr = trBlock_arr.length;
+    let pointers = document.querySelectorAll(".leaflet-marker-icon");
 
     for (let s = 0; s < size_trBlock_arr; s++) {
 
       let tr_target_text = trBlock_arr[s].childNodes[1].textContent ;
+      let tr_target_id = trBlock_arr[s].id;
 
-      console.log(trBlock_arr[0] == address)
+      console.log(tr_target_id)
       if (tr_target_text == address) {
 
         trBlock_arr[s].style.display = "none";
+        pointers[tr_target_id].style.display = "block";
       }
       
     }
 
-      //tbody.removeChild(address_target[number]);
-      
 
-    /*if( number > newArrayOrderFromClick.length)  {
-      let less = number - newArrayOrderFromClick.length;
-      newArrayOrderFromClick.splice((number - less), 1)
-    }
-    else newArrayOrderFromClick.splice(number+1, 1)*/
-  
-
-    //console.log(trBlock_arr)
     
   }
 
 
-  function createRowInTable(numberList, address){
+  function createRowInTable(id, numberList, address){
 
       
       const tr = document.createElement("tr");
@@ -163,7 +156,7 @@ function generateMarkersFeatureGroup(response) {
       const tdAddress = document.createElement("td");
       const tdAction = document.createElement("td");
 
-
+      tr.setAttribute("id", id);
       tr.setAttribute("class", "tr_block");
       tdAction.setAttribute("class", "action_remove");
       tdAction.setAttribute("onclick", "action_remove('"+ address +"')");
