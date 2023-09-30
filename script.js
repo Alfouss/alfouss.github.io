@@ -3,37 +3,112 @@ let i = 0;
 let j = 0;
 let res;
 
-const csvFile= `10 Bd Montmartre, 75009 Paris
-8 Cité Bergère, 75009 Paris
-12 Cité Bergère, 75009 Paris
-5 Cité Bergère, 75009 Paris
-2 Cité Rougemont, 75009 Paris
-15 Rue de Montyon, 75009 Paris
-5 Rue de Montyon, 75009 Paris
-9 Rue du Conservatoire, 75009 Paris
-10 Rue du Conservatoire, 75009 Paris
-11 Rue Richer, 75009 Paris
-11 Rue de Trévise, 75009 Paris`;
+let csvFile =  `20 Rue Berthollet
+28 Rue de la Huchette
+50 Rue Gay-Lussac
+125 Bd Saint-Michel
+73 Rue Saint-Jacques
+108 Rue Monge
+20-22 Rue Pascal
+50 Rue des Bernardins
+5 Rue Linné
+ 4 Bd Saint-Marcel
+6 Rue Gay-Lussac
+15 Rue Pascal
+56 Rue Mouffetard
+13 Rue du Sommerard
+19 Pl. du Panthéon
+6 Rue Victor Cousin
+3 Rue de l'Abbé de l'Épée
+28 Rue Censier
+1 Pl. de la Sorbonne
+3 Rue de l'Abbé de l'Épée
+17 Pl. du Panthéon
+32 Rue des Écoles
+15-17 Rue du Sommerard
+3 Rue Flatters
+16 Rue Cujas
+107 Bd Saint-Michel
+43 Av. Georges Bernanos
+1 Rue de la Harpe
+46 Bd Saint-Germain
+75 Rue du Cardinal Lemoine
+19 Rue Maître Albert
+13 Rue des Écoles
+12 Rue de la Montagne Ste Geneviève
+71 Rue Monge
+7 Rue de l'Hôtel Colbert
+31 Rue des Écoles
+7 Rue Thénard
+34 Rue de l'Arbalète
+43 Rue des Écoles
+42, rue des Bernardins
+3 Rue Champollion
+35 Rue des Écoles
+22 Rue de la Parcheminerie
+20 Rue du Sommerard
+33 Rue des Écoles
+12 Bd de l'Hôpital
+6 Rue Gay-Lussac
+Rue Saint-Jacques
+41 Rue des Écoles
+2 Rue Berthollet
+17 Rue Lacépède
+1 rue des Ecoles
+1 Quai Saint-Michel
+54 Rue Monge
+18 Rue de la Harpe
+214 Rue Saint-Jacques
+41 Bd Saint-Michel
+51 Rue Monge
+11 Rue des Écoles
+20 Rue Cujas
+38-40 Rue Saint-Séverin
+21 Bd Saint-Michel
+55 Rue Monge`;
 
-let newCsv ;
+
+//testChange();
+/*
+function testChange(){
+
+  let listLoad = document.querySelector("#listLoad");
+  
+  csvFile = listLoad.value ;
+
+  var lines = csvFile.split("\n");
+
+  while( typeof lines[0] !== "undefined" ){
+          var line = lines.shift().trim();
+          arrAdress[i] = line + ', Paris';
+          i++;
+  }
+
+  L.mapquest.key = 'EG2AvaesRO8BbCEzGpzOKFtjGDUzXv2G';
+
+// Geocode three locations, then call the createMap callback
+console.log(arrAdress);
+
+L.mapquest.geocoding().geocode(arrAdress, createMap);
+LoadAttribute();
+}*/
+
+
+
 
 var lines = csvFile.split("\n");
 
 while( typeof lines[0] !== "undefined" ){
         var line = lines.shift().trim();
-        newCsv += '"' + line + ', Paris", '; 
         arrAdress[i] = line + ', Paris';
         i++;
 }
 
 
-
-
 L.mapquest.key = 'EG2AvaesRO8BbCEzGpzOKFtjGDUzXv2G';
-
-// Geocode three locations, then call the createMap callback
-console.log(arrAdress)
 L.mapquest.geocoding().geocode(arrAdress, createMap);
+LoadAttribute();
+
 
 function createMap(error, response) {
   // Initialize the Map
@@ -72,6 +147,9 @@ function generateMarkersFeatureGroup(response) {
 
 //=======================================================//
 
+
+
+
   let newArrayOrderFromClick = [];
   let table = document.querySelector("#table");
   let tbody = table.childNodes[1];
@@ -89,7 +167,19 @@ function generateMarkersFeatureGroup(response) {
 
     newArrayOrderFromClick = [];
     console.log("reset");
+    removeAlltrBlock()
   }
+
+  function removeAlltrBlock(){
+
+    let trBlock_arr = document.querySelectorAll(".tr_block");
+    let size_trBlock_arr = trBlock_arr.length;
+
+    for (let s = 0; s < size_trBlock_arr; s++) {
+      trBlock_arr[s].remove();
+    }
+  }
+
 
   function MessageUnfillList(){
     let messageUnfillList = document.querySelector("#messageUnfillList");
@@ -103,6 +193,7 @@ function generateMarkersFeatureGroup(response) {
    if(newArrayOrderFromClick.length < 1) MessageUnfillList();
    console.log(newArrayOrderFromClick);
     generateAddressScript(newArrayOrderFromClick);
+    removeAlltrBlock();
   }    
 
 
@@ -131,37 +222,42 @@ function generateMarkersFeatureGroup(response) {
 
     for (let s = 0; s < size_trBlock_arr; s++) {
 
-      let tr_target_text = trBlock_arr[s].childNodes[1].textContent ;
+      let tr_target_address_text = trBlock_arr[s].childNodes[1].textContent ;
       let tr_target_id = trBlock_arr[s].id;
 
-      console.log(tr_target_id)
-      if (tr_target_text == address) {
+      //console.log(tr_target_id)
+      if (tr_target_address_text == address) {
 
-        trBlock_arr[s].style.display = "none";
+        //trBlock_arr[s].style.display = "none";
+        trBlock_arr[s].remove();
         pointers[tr_target_id].style.display = "block";
+      }
+
+      if( newArrayOrderFromClick[s] == address){
+        newArrayOrderFromClick.splice(s, 1);
       }
       
     }
-
-
-    
   }
+
 
 
   function createRowInTable(id, numberList, address){
 
-      
+     
+    // Create Tag
       const tr = document.createElement("tr");
       const tdNum = document.createElement("td");
       const tdAddress = document.createElement("td");
       const tdAction = document.createElement("td");
 
+      // Attibute calss, id, action type....
       tr.setAttribute("id", id);
       tr.setAttribute("class", "tr_block");
       tdAction.setAttribute("class", "action_remove");
-      tdAction.setAttribute("onclick", "action_remove('"+ address +"')");
+      tdAction.setAttribute("onclick", 'action_remove("'+ address +'")');
       
-
+      // convert in texxt the paramaters retrieved
       const numberListText = document.createTextNode(numberList);
       const addressText = document.createTextNode(address);
       const actionText = document.createTextNode("X");
@@ -171,10 +267,12 @@ function generateMarkersFeatureGroup(response) {
       tdAction.style.fontWeight = "bold";
       tdAction.style.color = "red";
      
+      // Add text to their parents (content to td)
       tdNum.appendChild(numberListText);
       tdAddress.appendChild(addressText);
       tdAction.appendChild(actionText);
 
+      // Add text to their parents (td to tr)
       tr.appendChild(tdNum);
       tr.appendChild(tdAddress);
       tr.appendChild(tdAction);
@@ -193,7 +291,7 @@ function generateMarkersFeatureGroup(response) {
 
 
 
-
+function LoadAttribute(){
   setTimeout(() => {
 
     let elements = document.querySelectorAll(".leaflet-marker-icon");
@@ -209,33 +307,14 @@ function generateMarkersFeatureGroup(response) {
     finishButton.addEventListener("click", buttonFinishF, false);
 
 
-    }, "2700");
+  }, "2700");
+
+}
 
 let f = 0;
 let l = 0;
 let arrAdressStringCorrected = [];
 
-/*console.log("toto");
-
-const listeAddress= `197 Boulevard Brune
-19 Rue du Commandant René Mouchotte
-Citadines Didot Montparnasse
-20 Rue de la Gaité
-51 Av. du Maine
-11 Sq. de Châtillon
-197 Boulevard Brune
-19 Rue du Commandant René Mouchotte
-Citadines Didot Montparnasse
-20 Rue de la Gaité
-51 Av. du Maine
-11 Sq. de Châtillon`;
-
-
-
-var lines = listeAddress.split("\n");*/
-
-
-//====================================================================
 
 
 
