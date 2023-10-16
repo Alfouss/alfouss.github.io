@@ -87,7 +87,6 @@ function testChange(){
   L.mapquest.key = 'EG2AvaesRO8BbCEzGpzOKFtjGDUzXv2G';
 
 // Geocode three locations, then call the createMap callback
-console.log(arrAdress);
 
 L.mapquest.geocoding().geocode(arrAdress, createMap);
 LoadAttribute();
@@ -132,7 +131,6 @@ function generateMarkersFeatureGroup(response) {
     // Select address
     var location = response.results[i].locations[0];
     var locationLatLng = location.latLng;
-    console.log(location);
 
     // Create a marker for each location
     var marker = L.marker(locationLatLng, {icon: L.mapquest.icons.marker()})
@@ -157,12 +155,12 @@ function generateMarkersFeatureGroup(response) {
 
   function resetButtonF(){
 
-    if(newArrayOrderFromClick.length < 1) return false;
+    //if(newArrayOrderFromClick.length < 1) return false;
 
     let elements = document.querySelectorAll(".leaflet-marker-icon");
 
     for(i = 0 ; i < elements.length; i++){
-    elements[i].style.display = "block" ;
+      elements[i].style.display = "block" ;
     }
 
     newArrayOrderFromClick = [];
@@ -191,7 +189,7 @@ function generateMarkersFeatureGroup(response) {
 
   function buttonFinishF(){
    if(newArrayOrderFromClick.length < 1) MessageUnfillList();
-   console.log(newArrayOrderFromClick);
+
     generateAddressScript(newArrayOrderFromClick);
     removeAlltrBlock();
   }    
@@ -207,7 +205,6 @@ function generateMarkersFeatureGroup(response) {
     
     pointers[num].style.display = "none" ;
     //pointers[num].src = "https://assets.mapquestapi.com/icon/v2/marker-end.png" ;
-    console.log(newArrayOrderFromClick);
     createRowInTable(num, sizeNewArrayFromClick, arrAdress[num]);
   }
 
@@ -225,7 +222,6 @@ function generateMarkersFeatureGroup(response) {
       let tr_target_address_text = trBlock_arr[s].childNodes[1].textContent ;
       let tr_target_id = trBlock_arr[s].id;
 
-      //console.log(tr_target_id)
       if (tr_target_address_text == address) {
 
         //trBlock_arr[s].style.display = "none";
@@ -320,12 +316,11 @@ let arrAdressStringCorrected = [];
 
 function generateAddressScript(arrAdressValidate){
 
+  console.log(arrAdressValidate);
     while( typeof arrAdressValidate[0] !== "undefined" ){
             var line = arrAdressValidate.shift().trim();
             var split = line.replace(/ /g, "+" ).replace(/,/g, "" ).replace(/'/g, "%27" );
-            console.log(split)
             arrAdressStringCorrected[f] = split;
-            console.log("1");
             f++;
     }
 
