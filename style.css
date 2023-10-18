@@ -1,0 +1,181 @@
+body{
+    border-color: deepskyblue; 
+    margin: 0;
+    border: 3px solid #c0cd87;
+}
+
+@media screen and (min-width: 901px){
+
+    #map{
+        width: 70%;
+        height: 100%;
+        position: absolute;
+        box-shadow: 6px 0px 15px 0px rgb(153 162 115);
+    }
+
+    #divTable {
+        position: absolute;
+        width: 30%;
+        right: 0px;
+        overflow:scroll;
+        height: 100%;
+    }
+    table {
+        width: 100%;
+
+    }
+    
+    #resetAll {
+        position: absolute;
+        z-index: 1000;
+        top: 90%;
+        left: 0%;
+        background-color: initial;
+        background-image: linear-gradient(-180deg, #8a0b12, #b90404);
+        border-radius: 5px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-block;
+        font-family: Inter,-apple-system,system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+        height: 31px;
+        width: 100px;
+        outline: 0;
+        overflow: hidden;
+        padding: 0 20px;
+        pointer-events: auto;
+        
+        text-align: center;
+        touch-action: manipulation;
+        user-select: none;
+        -webkit-user-select: none;
+        vertical-align: top;
+        white-space: nowrap;
+        
+      border: 0;
+    }
+
+    #Finish {
+        position: absolute;
+        z-index: 1000;
+        top: 90%;
+        right: 30%;
+        background-color: initial;
+        background-image: linear-gradient(-180deg, #00D775, #00BD68);
+        border-radius: 5px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-block;
+        font-family: Inter,-apple-system,system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+        height: 31px;
+        width: 100px;
+        outline: 0;
+        overflow: hidden;
+        padding: 0 20px;
+        pointer-events: auto;
+        
+        text-align: center;
+        touch-action: manipulation;
+        user-select: none;
+        -webkit-user-select: none;
+        vertical-align: top;
+        white-space: nowrap;
+        
+        border: 0;
+      }
+    
+    #Finish:hover {
+      background: #00bd68;
+    }
+
+  }
+
+
+@media screen and (min-width: 200px) and (max-width: 900px) {
+
+    #map{
+        width: 100%;
+        height: 77%;
+        position: relative;
+        box-shadow: 6px 6px 15px 0px rgb(153 162 115);
+    }
+
+    #divTable {
+        width: 100%;
+        overflow:scroll;
+        height: 23%;
+
+    }
+    table {
+        width: 100%;
+
+    }
+
+    #resetAll {
+        position: absolute;
+        z-index: 1000;
+        top: 2%;
+        left: 35%;
+        background-color: initial;
+        background-image: linear-gradient(-180deg, #8a0b12, #b90404);
+        border-radius: 5px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-block;
+        font-family: Inter,-apple-system,system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+        height: 31px;
+        width: 100px;
+        outline: 0;
+        overflow: hidden;
+        padding: 0 20px;
+        pointer-events: auto;
+        
+        text-align: center;
+        touch-action: manipulation;
+        user-select: none;
+        -webkit-user-select: none;
+        vertical-align: top;
+        white-space: nowrap;
+        
+        border: 0;
+      }
+
+    #Finish {
+        position: absolute;
+        z-index: 1000;
+        top: 72%;
+        right: 40%;
+        background-color: initial;
+        background-image: linear-gradient(-180deg, #00D775, #00BD68);
+        border-radius: 5px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-block;
+        font-family: Inter,-apple-system,system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+        height: 31px;
+        width: 100px;
+        outline: 0;
+        overflow: hidden;
+        padding: 0 20px;
+        pointer-events: auto;
+        
+        text-align: center;
+        touch-action: manipulation;
+        user-select: none;
+        -webkit-user-select: none;
+        vertical-align: top;
+        white-space: nowrap;
+        
+        border: 0;
+      }
+
+      #Finish:hover {
+        background: #00bd68;
+      }
+
+  }
+
+  

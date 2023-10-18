@@ -1,29 +1,38 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
     <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css"/>
-
+    <link rel="stylesheet" href="style.css">
   </head>
 
-  <body style="border: 0; margin: 0;">
+  <body>
     <!-- <textarea name="" id="listLoad" cols="30" rows="10" onchange="testChange()"></textarea> -->
-    <button id="resetAll" style="position: absolute; z-index: 1000; top: 70px;">ResetAll</button>
-    <button id="Finish" style="position: absolute; z-index: 1000; top: 90px;">Finish</button>
-    <div id="messageUnfillList" style=" width: 100%; display: none; z-index: 1000; position: absolute; background-color: orange; color: white;  top: 150;">
-      <p style="text-align: center;">Veuillez remplir la liste avec au moin une adresse</p>
-    </div>
+
+
     <div style="">
-      <div id="map" style="width: 70%; height: 100%;position: absolute;"></div>
-      <table id="table" style="position: absolute; width:30%;right: 0px;">
-      
-        <tr>
-          <th>Numbers</th>
-          <th>Adresse</th>
-          <th>Action;</th>
-        </tr>
+      <button id="resetAll" >ResetAll</button>
+      <button id="Finish">Finish</button>
   
-      </table>
+      <div id="messageUnfillList" style=" width: 100%; display: none; z-index: 1000; position: absolute; background-color: orange; color: white;  top: 150;">
+        <p style="text-align: center;">Veuillez remplir la liste avec au moin une adresse</p>
+      </div>
+
+      <div id="map" ></div>
+      <div id="divTable">
+        <table id="table" >
+      
+          <tr>
+            <th>Numbers</th>
+            <th>Adresse</th>
+            <th>Action;</th>
+          </tr>
+    
+        </table>
+
+      </div>
+
     </div>
    
     
